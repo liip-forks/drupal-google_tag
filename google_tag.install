@@ -224,7 +224,7 @@ function google_tag_update_7104(&$sandbox) {
       ':new' => 's:26:"google_tag_compact_snippet"',
     );
     $count += db_update('variable')
-      ->expression('value', 'REPLACE(value, :old, :new)', $args)
+      ->expression('value', 'REPLACE(value::text, :old, :new)::bytea', $args)
       ->condition('name', 'variable_realm_list_language')
       ->execute();
   }
